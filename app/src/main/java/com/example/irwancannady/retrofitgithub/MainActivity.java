@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         textView3 = (TextView) findViewById(R.id.textView3);
 
 
-        final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this,"Mohon Tunggu","Memuat data anda...", false, false);
+        final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this,"Mohon Tunggu","Memuat data anda....", false, false);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
