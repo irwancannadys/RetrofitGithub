@@ -1,5 +1,6 @@
 package com.example.irwancannady.retrofitgithub;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         textView3 = (TextView) findViewById(R.id.textView3);
 
 
+        final ProgressDialog progressDialog = ProgressDialog.show(MainActivity.this,"Mohon Tunggu","Memuat data anda...", false, false);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -39,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Model> call, Response<Model> response) {
 
+                progressDialog.dismiss();
+
                 model = response.body();
-                textView1.setText("Hello: " + model.getName() + " Welcome to github");
-                textView2.setText("Company : "+ model.getCompany());
-                textView3.setText("Repost" + model.getPublic_repos());
+                textView1.setText(getString(R.string.hello) + model.getName() + " Welcome to github");
+                textView2.setText(getString(R.string.company) + model.getCompany() + "");
+                textView3.setText(getString(R.string.repost) + model.getPublic_repos() + "");
 
             }
 
